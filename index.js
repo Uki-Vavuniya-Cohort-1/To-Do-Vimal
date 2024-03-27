@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const UseR = require('./note_model');
+const User = require('./note_model');
 const URI = "mongodb+srv://Vimal:vimal123@cluster0.nxgex.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 
@@ -49,7 +49,7 @@ const connect = async () => {
 
 app.post('/product', async (req, res) => {
    try {
-      const product = await UseR.create(req.body)
+      const product = await User.create(req.body)
       res.status(200).json(product)
    }
     catch (err) {
@@ -60,8 +60,8 @@ app.post('/product', async (req, res) => {
 app.put('/product/:id', async (req, res) => {
    try {
        const {id} = req.params;
-       await UseR.findByIdAndUpdate(id, req.body);
-       const product = await UseR.findById(id)
+       await User.findByIdAndUpdate(id, req.body);
+       const product = await User.findById(id)
        res.status(200).json(product);
    }
    catch (err) {
@@ -70,19 +70,19 @@ app.put('/product/:id', async (req, res) => {
 }
 )
 
-// app.delete('/product/:id', async (req, res) => {
-//    try {
-//        const {id} = req.params;
-//        const product = await UseR.findByIdAndDelete(id)
-//        if(!product) {
-//            return res.status(404).json({message: "Product not found"})
-//        }
-//        res.status(200).json(product)
-//        console.log("Deleted")
+app.delete('/product/:id', async (req, res) => {
+   try {
+       const {id} = req.params;
+       const product = await User.findByIdAndDelete(id)
+       if(!product) {
+           return res.status(404).json({message: "Product not found"})
+       }
+       res.status(200).json(product)
+       console.log("Deleted")
        
-//    }
-//    catch (err) {
-//        console.log(err)
-//    }
-// }
-// )
+   }
+   catch (err) {
+       console.log(err)
+   }
+}
+)
