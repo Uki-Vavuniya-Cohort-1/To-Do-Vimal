@@ -19,7 +19,7 @@ export default function DataShowing() {
             {error ? (
                 <div>Error: {error}</div>
             ) : (
-                <table>
+                <table>x
                     <thead>
                         <tr>
                             <th>Title</th> 

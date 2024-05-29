@@ -19,9 +19,10 @@ function Form() {
             Status
         };
         try {
-            // Make a POST request to the server
+            // Make a POST request to server
             const response = await axios.post('http://localhost:3004/notes', userData);
             console.log('Response:', response.data);
+
         } catch (error) {
             // Handle errors
             console.error('Error:', error);
